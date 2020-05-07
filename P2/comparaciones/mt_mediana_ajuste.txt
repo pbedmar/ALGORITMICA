@@ -1,0 +1,20 @@
+gnuplot> f(x) = a*x**2+x*b+c
+After 12 iterations the fit converged.
+final sum of squares of residuals : 0.234826
+rel. change during last iteration : -6.1462e-15
+
+degrees of freedom    (FIT_NDF)                        : 12
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.139889
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0195689
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 2.013e-08        +/- 4.758e-10    (2.363%)
+b               = -9.68981e-05     +/- 1.47e-05     (15.17%)
+c               = 0.0509852        +/- 0.04352      (85.35%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.960  1.000 
+c               0.373 -0.474  1.000 

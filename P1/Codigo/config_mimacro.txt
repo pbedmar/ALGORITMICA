@@ -1,0 +1,11 @@
+mergesort: 	200000
+		200000
+
+bubblesort:	1000
+		1000
+
+floyd:		30
+		30
+
+hanoi:		10
+		1

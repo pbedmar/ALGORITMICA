@@ -1,0 +1,3 @@
+Tenemos una matriz bidimensional en las que estan las distancias de todas las ciudades con todas. La distancia de una ciudad consigo misma esta claro que es 0.
+
+El algoritmo básicamente busca la primera ciudad, es decir, en la matriz bidimensional aquella distancia que sea mayor que 0. Una vez encontrada esa ciudad, ésta se guarda en el vector solución y además, se borran las conexiones de la ciudad inicial, es decir, la fila y la columna de esa ciudad, y después, volvemos a hacer lo mismo, buscamos de la ciudad siguiente aquella cuya distancia a otra  sea mayor que 0, etc etc

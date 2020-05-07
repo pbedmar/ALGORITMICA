@@ -1,0 +1,153 @@
+ciudad: 0 coste: -444290616
+ciudad: 1 coste: -444290616
+ciudad: 2 coste: -444290616
+ciudad: 3 coste: -444290616
+ciudad: 4 coste: -444290616
+ciudad: 5 coste: -444290616
+ciudad: 6 coste: -444290616
+ciudad: 7 coste: -444290616
+ciudad: 8 coste: -444290616
+ciudad: 9 coste: -444290616
+ciudad: 10 coste: -444290616
+ciudad: 11 coste: -444290616
+ciudad: 12 coste: -444290616
+ciudad: 13 coste: -444290616
+ciudad: 14 coste: -444290616
+ciudad: 15 coste: -444290616
+ciudad: 16 coste: -444290616
+ciudad: 17 coste: -444290616
+ciudad: 18 coste: -444290616
+ciudad: 19 coste: -444290616
+ciudad: 20 coste: -444290616
+ciudad: 21 coste: -444290616
+ciudad: 22 coste: -444290616
+ciudad: 23 coste: -444290616
+ciudad: 24 coste: -444290616
+ciudad: 25 coste: -444290616
+ciudad: 26 coste: -444290616
+ciudad: 27 coste: -444290616
+ciudad: 28 coste: -444290616
+ciudad: 29 coste: -444290616
+ciudad: 30 coste: -444290616
+ciudad: 31 coste: -444290616
+ciudad: 32 coste: -444290616
+ciudad: 33 coste: -444290616
+ciudad: 34 coste: -444290616
+ciudad: 35 coste: -444290616
+ciudad: 36 coste: -444290616
+ciudad: 37 coste: -444290616
+ciudad: 38 coste: -444290616
+ciudad: 39 coste: -444290616
+ciudad: 40 coste: -444290616
+ciudad: 41 coste: -444290616
+ciudad: 42 coste: -444290616
+ciudad: 43 coste: -444290616
+ciudad: 44 coste: -444290616
+ciudad: 45 coste: -444290616
+ciudad: 46 coste: -444290616
+ciudad: 47 coste: -444290616
+ciudad: 48 coste: -444290616
+ciudad: 49 coste: -444290616
+ciudad: 50 coste: -444290616
+ciudad: 51 coste: -444290616
+ciudad: 52 coste: -444290616
+ciudad: 53 coste: -444290616
+ciudad: 54 coste: -444290616
+ciudad: 55 coste: -444290616
+ciudad: 56 coste: -444290616
+ciudad: 57 coste: -444290616
+ciudad: 58 coste: -444290616
+ciudad: 59 coste: -444290616
+ciudad: 60 coste: -444290616
+ciudad: 61 coste: -444290616
+ciudad: 62 coste: -444290616
+ciudad: 63 coste: -444290616
+ciudad: 64 coste: -444290616
+ciudad: 65 coste: -444290616
+ciudad: 66 coste: -444290616
+ciudad: 67 coste: -444290616
+ciudad: 68 coste: -444290616
+ciudad: 69 coste: -444290616
+ciudad: 70 coste: -444290616
+ciudad: 71 coste: -444290616
+ciudad: 72 coste: -444290616
+ciudad: 73 coste: -444290616
+ciudad: 74 coste: -444290616
+ciudad: 75 coste: -444290616
+DIMENSION: 76
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+37
+36
+19
+31
+30
+29
+20
+21
+25
+22
+23
+24
+26
+27
+28
+32
+33
+34
+35
+38
+39
+40
+41
+60
+59
+42
+54
+53
+52
+43
+44
+48
+45
+46
+47
+49
+50
+51
+55
+56
+57
+58
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76

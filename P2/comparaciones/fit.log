@@ -1,0 +1,110 @@
+
+
+*******************************************************************************
+Wed Apr  8 12:00:46 2020
+
+
+FIT:    data read from 'mt-mediana.txt'
+        format = z
+        #datapoints = 15
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**2+x*b+c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.2298633221e+18   0.00e+00  1.65e+08    1.000000e+00   1.000000e+00   1.000000e+00
+  12 2.3482639319e-01  -6.15e-10  1.65e-04    2.013005e-08  -9.689813e-05   5.098522e-02
+
+After 12 iterations the fit converged.
+final sum of squares of residuals : 0.234826
+rel. change during last iteration : -6.1462e-15
+
+degrees of freedom    (FIT_NDF)                        : 12
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.139889
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0195689
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 2.013e-08        +/- 4.758e-10    (2.363%)
+b               = -9.68981e-05     +/- 1.47e-05     (15.17%)
+c               = 0.0509852        +/- 0.04352      (85.35%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.960  1.000 
+c               0.373 -0.474  1.000 
+
+
+*******************************************************************************
+Wed Apr  8 12:07:42 2020
+
+
+FIT:    data read from 'mdyv-mediana.txt'
+        format = z
+        #datapoints = 15
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = d*(log(x)/log(2))*(x**2)+e
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d             e            
+   0 2.7433450980e+20   0.00e+00  3.02e+09    1.000000e+00   1.000000e+00
+   5 1.2537769584e+01  -2.90e-05  3.02e+04    4.300413e-09   1.000000e+00
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 12.5378
+rel. change during last iteration : -2.89528e-10
+
+degrees of freedom    (FIT_NDF)                        : 13
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.982061
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.964444
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d               = 4.30041e-09      +/- 6.275e-11    (1.459%)
+e               = 1                +/- 0.2684       (26.84%)
+
+correlation matrix of the fit parameters:
+                d      e      
+d               1.000 
+e              -0.327  1.000 
+
+
+*******************************************************************************
+Wed Apr  8 12:10:25 2020
+
+
+FIT:    data read from 'mdyv-mediana.txt'
+        format = z
+        #datapoints = 15
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = d*(log(x)/log(2))*(x**2)+e
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d             e            
+   0 1.2537769584e+01   0.00e+00  1.30e+01    4.300413e-09   1.000000e+00
+   4 1.4502000112e-01  -1.49e-01  1.30e-03    4.374040e-09   3.806102e-02
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 0.14502
+rel. change during last iteration : -1.48577e-06
+
+degrees of freedom    (FIT_NDF)                        : 13
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.105619
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0111554
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d               = 4.37404e-09      +/- 6.749e-12    (0.1543%)
+e               = 0.038061         +/- 0.02886      (75.83%)
+
+correlation matrix of the fit parameters:
+                d      e      
+d               1.000 
+e              -0.327  1.000 

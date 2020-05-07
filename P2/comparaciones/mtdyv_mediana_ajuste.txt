@@ -1,0 +1,28 @@
+gnuplot> g(x) = d*(log(x)/log(2))*(x**2)+e
+gnuplot> fit g(x) 'mdyv-mediana.txt' via d, e
+iter      chisq       delta/lim  lambda   d             e            
+   0 1.2537769584e+01   0.00e+00  1.30e+01    4.300413e-09   1.000000e+00
+   1 1.0790769758e+01  -1.62e+04  1.30e+00    4.305626e-09   9.296232e-01
+   2 2.7961373759e-01  -3.76e+06  1.30e-01    4.366347e-09   1.383091e-01
+   3 1.4502021658e-01  -9.28e+04  1.30e-02    4.374031e-09   3.818785e-02
+   4 1.4502000112e-01  -1.49e-01  1.30e-03    4.374040e-09   3.806102e-02
+iter      chisq       delta/lim  lambda   d             e            
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 0.14502
+rel. change during last iteration : -1.48577e-06
+
+degrees of freedom    (FIT_NDF)                        : 13
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.105619
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0111554
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d               = 4.37404e-09      +/- 6.749e-12    (0.1543%)
+e               = 0.038061         +/- 0.02886      (75.83%)
+
+correlation matrix of the fit parameters:
+                d      e      
+d               1.000 
+e              -0.327  1.000 
+

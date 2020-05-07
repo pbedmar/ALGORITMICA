@@ -1,0 +1,29 @@
+gnuplot> f(x) = a*x*(log(x)/log(2))+b
+gnuplot> fit f(x) "salida_mergesort_mediana.dat" via a, b
+iter      chisq       delta/lim  lambda   a             b            
+   0 4.1014093774e+00   0.00e+00  8.57e-01    4.028936e-09   1.000000e+00
+   1 4.5522819309e-01  -8.01e+05  8.57e-02    7.436945e-09   3.254246e-01
+   2 1.0901942128e-03  -4.17e+07  8.57e-03    9.348324e-09   8.892703e-03
+   3 1.0774801129e-03  -1.18e+03  8.57e-04    9.358514e-09   7.217284e-03
+   4 1.0774801129e-03  -3.34e-06  8.57e-05    9.358515e-09   7.217195e-03
+iter      chisq       delta/lim  lambda   a             b            
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 0.00107748
+rel. change during last iteration : -3.33926e-11
+
+degrees of freedom    (FIT_NDF)                        : 23
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00684448
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.6847e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 9.35851e-09      +/- 1.973e-11    (0.2108%)
+b               = 0.0072172        +/- 0.003356     (46.5%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.913  1.000 
+gnuplot> f(x) = a*x*(log(x)/log(2))+b
+gnuplot> plot f(x) title "xlog(x)", "salida_mergesort_mediana.dat" w lp title "mergesort"

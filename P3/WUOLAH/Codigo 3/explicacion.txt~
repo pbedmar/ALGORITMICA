@@ -1,0 +1,4 @@
+Tenemos una matriz en las que estan las distancias de todas las ciudades
+con todas. La distancia de una ciudad consigo misma esta claro que es 0.
+
+El algoritmo básicamente busca la primera ciudad en la que 
