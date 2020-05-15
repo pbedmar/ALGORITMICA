@@ -1,8 +1,16 @@
+/* 
+  Fichero: tsp-PD.cpp
+  Autores:  Joaquín García Venegas
+            Joaquín Alejandro España Sánchez
+            Pedro Bedmar López
+            Alejandro Escalona García
+  Fecha: 7/05/20
+  Compilación: g++ tsp-PD.cpp -o tsp-PD
+*/
 #include<iostream>
 #include<fstream>
 #include<chrono>
 #include<vector>
-#include<algorithm>
 #include<math.h>
 #include<errno.h>
 using namespace std;
@@ -12,9 +20,7 @@ struct ciudad{
     double nodo, coord_x, coord_y;
 };
 
-vector<ciudad> ciudades;
-
-//Devuelve la distancia euclídea entre dos ciudades dadas.
+//Devuelve la distancia euclídea entre dos ciudades.
 double distanciaEuclideaCiudades(ciudad & c1, ciudad & c2)
 {
     double distancia = sqrt(pow((1.0)*c2.coord_x-c1.coord_x,2)+pow((1.0)*c2.coord_y-c1.coord_y,2));
@@ -22,8 +28,6 @@ double distanciaEuclideaCiudades(ciudad & c1, ciudad & c2)
 }
 
 //Lee el archivo .tsp dado su path y almacena las ciudades que obtiene en un std::vector
-//Para que la lectura se haga correctamente las ciudades deberan estar entre la etiqueta
-// 'NODE_CORRD_SECTION' al inicio y 'EOF' al final.
 void leerArchivo(string path, vector<ciudad> & v)
 {
     ifstream f(path);
@@ -86,33 +90,9 @@ double calcularCoste(vector<ciudad> & v, vector<vector<double> > & m){
     return coste;
 }
 
-int costeMin(ciudad cinicial, vector<ciudad> & c, vector<vector<double> > & mDistancias){
+//Funcion para calcular el recorrido con programacion dinamica
 
-    if(c.size()>0){
 
-        int coste_min=1000000, coste_actual;
-
-        for(int i=0;i<c.size();i++){
-
-            vector<ciudad> c_aux(c);
-            c_aux.erase(c_aux.begin()+i);
-            coste_actual = costeMin(c[i],c_aux,mDistancias) + distanciaEuclideaCiudades(cinicial,c[i]);
-
-            //Se elige el coste mínimo de los costes calculados de la llamada recursiva
-            if(coste_actual<coste_min){
-                coste_min = coste_actual;
-            }  
-
-        }
-
-        return coste_min;
-
-    } else {
-
-        return distanciaEuclideaCiudades(cinicial,ciudades[0]);  
-
-    }
-}
 
 int main(int argc, char **argv){
 
@@ -121,23 +101,67 @@ int main(int argc, char **argv){
     //Comprobación del número de parámetros
     if (argc != 2)
     {
-        cerr << "Formato: ./tsp <fichero_ciudades_.tsp"  << endl;
+        cerr << "Formato: ./insercion <fichero_ciudades_.tsp"  << endl;
         return -1;
     }
 
     //Definición y carga de datos en el vector de ciudades y en la matriz de distancias
+    vector<ciudad> ciudades;
     leerArchivo(argv[1],ciudades);
-
     vector<vector<double> > matrizDistancias(ciudades.size(), vector<double>(ciudades.size()));
     construirMatrizDistancias(ciudades,matrizDistancias);
 
-    vector<ciudad> c_aux(ciudades);
-    c_aux.erase(c_aux.begin());
+    //Creamos un vector con las ciudades ya recorridas y otro con las que faltan por recorrer
+    vector<ciudad> ciudades_visitadas;
+    vector<ciudad> ciudades_por_visitar;
 
-    int coste=costeMin(ciudades[0],c_aux,matrizDistancias);
+    ciudad minima_ciudad;
+    int posicion_minima;
+    double distancia;
+    int coste_total_minimo=10000000;
+    vector<ciudad> ciudades_visitadas_minimas;
 
-    cout << endl << "Coste total: " << coste << endl;
+    clock_t t_antes=clock();
 
-    vector<vector<double> > M(ciudades.size()+1, vector<double>(ciudades.size()+1));
+    //FUNCION DEL FUCKING CHINO
+    vector<vector<double> > resultado(ciudades.size(), vector<double>(ciudades.size()));
 
+    int i,j,k;
+    for(i=0;i<ciudades.size();i++)
+    {
+       resultado[i][0] = matrizDistancias[i][0];
+    }
+  
+    for(i=1;i<(ciudades.size());i++)
+    {
+        for(j=0;j<ciudades.size();j++)
+        {
+            
+           resultado[j][i]=0x3f3f3f3f;
+
+            if( (i/pow(2, j-1)) == 1 )     // i/2^(j-1)&1 que sea igual a 1
+                continue;
+
+            for(k=1;k<ciudades.size();k++)
+            {       
+                /*
+                if((i/pow(2, k-1)) == 0)
+                    continue;
+                */
+                if(resultado[j][i]>matrizDistancias[j][k]+resultado[k][i^(1<<(k-1))])
+                    resultado[j][i]=matrizDistancias[j][k]+resultado[k][i^(1<<(k-1))];
+           }
+        }
+    }
+    //  cout << resultado[0][(1<<(ciudades.size()-1))-1] << endl;
+
+    clock_t t_despues=clock();
+/*
+    cout << ciudades_visitadas_minimas.size() << endl;
+    for(vector<ciudad>::const_iterator it=ciudades_visitadas_minimas.cbegin();it!=ciudades_visitadas_minimas.cend();++it){
+     cout << (*it).nodo << " " << (*it).coord_x << " " << (*it).coord_y <<  endl;
+    }
+
+    cout << "Costo total: " << calcularCoste(ciudades_visitadas_minimas,matrizDistancias) << endl;
+*/
 }
