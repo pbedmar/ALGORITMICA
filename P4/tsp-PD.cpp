@@ -25,7 +25,7 @@ struct ciudad{
 
 
 //Devuelve la distancia euclídea entre dos ciudades 
-double distanciaEuclideaCiudades(ciudad & c1, ciudad & c2)
+double distanciaEuclideaCiudades(const ciudad & c1, const ciudad & c2)
 {
     double distancia = sqrt(pow((1.0)*c2.coord_x-c1.coord_x,2)+pow((1.0)*c2.coord_y-c1.coord_y,2));
     return distancia;
@@ -72,7 +72,7 @@ void leerArchivo(string path, vector<ciudad> & v)
 
 // Matriz cuadrada con dimensión equivalente al número de ciudades
 // En cada m[i][j] se almacena la distancia entre la ciudad i y j
-void construirMatrizDistancias(vector<ciudad> & v, vector<vector<double> > & m)
+void construirMatrizDistancias(const vector<ciudad>& v, vector<vector<double> >& m)
 {
     for(int i=0;i<v.size();i++){
         for(int j=i;j<v.size();j++){
@@ -84,7 +84,7 @@ void construirMatrizDistancias(vector<ciudad> & v, vector<vector<double> > & m)
 
 
 //Funcion para comprobar si una ciudad esta contenida en un subconjunto
-bool estaContenida(int &nodoOrigen, vector<int>& subconjunto)
+bool estaContenida(int &nodoOrigen, const vector<int>& subconjunto)
 {
     bool contenido = false;
     for(int i=0; i<subconjunto.size() && !contenido; i++){
@@ -95,10 +95,26 @@ bool estaContenida(int &nodoOrigen, vector<int>& subconjunto)
     return contenido;
 }
 
+//Funcion para obtener el numero de columna de un subconjunto
+int ColumnaMatrizConSubconjunto(const vector<vector<int>>& subconjuntos, const vector<int>& sub_a_buscar)
+{
+    bool encontrado = false;
+    int pos = -1;
+
+    for(int i=0; i<subconjuntos.size() && !encontrado; i++){
+        if(subconjuntos[i] == sub_a_buscar){
+            encontrado = true;
+            pos = i;
+        }
+    }
+
+    return pos;
+}
+
 
 // Función que calcula cual es la ciudad, de un conjunto de ciudades S (vector con sus nodos), con la que se 
 // obtiene el mínimo coste desde una ciudad origen
-pair<double, int> f(int nodoOrigen, vector<int> & S, vector<vector<double>> & matrizDistancias)
+pair<double, int> f(int nodoOrigen, const vector<int>& S, const vector<vector<double>>& matrizDistancias, const vector< vector<pair<double, int> >>& matrizDinamica, const vector< vector<int> >& subconjuntos)
 {
     double coste_actual = 0; 
     double coste_min = numeric_limits<double>::max();
@@ -130,8 +146,9 @@ pair<double, int> f(int nodoOrigen, vector<int> & S, vector<vector<double>> & ma
             aux.erase(it);
 
             // Coste de: L(i,j) + f(j, P-{j})
-            coste_actual = matrizDistancias[nodoOrigen][S[i]-1] + (f(S[i]-1, aux, matrizDistancias)).first;
-
+            coste_actual = matrizDistancias[nodoOrigen][S[i]-1]; //L(i,j)
+            coste_actual += matrizDinamica[S[i]-1][ColumnaMatrizConSubconjunto(subconjuntos,aux)].first;//f(j, P-{j})
+      
             if(coste_actual < coste_min){
                 coste_min = coste_actual;
                 nodo_minimo = S[i];
@@ -143,7 +160,7 @@ pair<double, int> f(int nodoOrigen, vector<int> & S, vector<vector<double>> & ma
 
 
 // Funcion para generar todos los subconjuntos posibles con los numeros desde inicio a N
-void generaSubconjuntos(int inicio, vector<bool> & conjunto,vector<vector<int> > & subconjuntos, int N)
+void generaSubconjuntos(int inicio, vector<bool> & conjunto,vector<vector<int> >& subconjuntos, int N)
 {
 	if(inicio == N)
 	{
@@ -168,7 +185,7 @@ void generaSubconjuntos(int inicio, vector<bool> & conjunto,vector<vector<int> >
 
 // Funcion que ordena por tamaño de los vectores, y si son del mismo tamaño, 
 // los ordena por su contenido
-bool ordenaSubconjuntos(vector<int> & a, vector<int> & b){
+bool ordenaSubconjuntos(vector<int> a, vector<int> b){
     if(a.size() < b.size())
         return true;
     else if(a.size()==b.size()){
@@ -203,7 +220,7 @@ vector<vector<int>> obtenerSubconjuntos(int n_ciudades)
 
 
 // Funcion para obtener la matriz con los costes optimos
-vector<vector<pair<double, int>>> obtenerMatrizDinamica(int n_ciudades, vector<vector<double>> & matrizDistancias, vector< vector<int> > & subconjuntos)
+vector<vector<pair<double, int>>> obtenerMatrizDinamica(int n_ciudades, vector<vector<double>> matrizDistancias, vector< vector<int> > subconjuntos)
 {
 
     // Matriz a rellenar
@@ -211,12 +228,13 @@ vector<vector<pair<double, int>>> obtenerMatrizDinamica(int n_ciudades, vector<v
 
     // Vamos rellenando la matriz por columnas, y por cada columna por filas
     for(int col=0; col<subconjuntos.size(); col++){
+        cout << "Ahora va por la columna " << col << endl;
         for(int fil=0; fil < n_ciudades; fil++){
                 // De la primera fila rellenamos todo con infinito menos la ultima columna (donde estara la solucion) y la primera
                 if(fil==0 && col != (subconjuntos.size()-1) && col!=0) 
                     matrizDinamica[fil][col].first = numeric_limits<double>::max();
                 else
-                    matrizDinamica[fil][col] = f(fil, subconjuntos[col], matrizDistancias);
+                    matrizDinamica[fil][col] = f(fil, subconjuntos[col], matrizDistancias, matrizDinamica, subconjuntos);
         }
     }
     
@@ -225,7 +243,7 @@ vector<vector<pair<double, int>>> obtenerMatrizDinamica(int n_ciudades, vector<v
 
 
 // Función para obtener el camino una vez generada la matriz dinamica
-vector<int> calcularCamino(vector< vector<pair<double, int>> > & matrizDinamica, vector< vector<int> > & subconjuntos)
+vector<int> calcularCamino(vector< vector<pair<double, int>> > matrizDinamica, vector< vector<int> > subconjuntos)
 {
     int tam = subconjuntos.size(), col;
     int fila = matrizDinamica[0][tam-1].second;
