@@ -1,9 +1,0 @@
-NAME : ulysses16.opt.tour
-COMMENT : Optimal solution for ulysses16 (6859)
-TYPE : TOUR
-DIMENSION : 10
-TOUR_SECTION
-1 7 6 5 9 10 3 2 4 8
--1
-EOF
-

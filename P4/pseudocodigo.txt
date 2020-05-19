@@ -1,0 +1,60 @@
+En nuestro fichero cpp dividimos el algoritmo en varias funciones. Para facilitar la explicación, aquí lo vamos a explicar todo en una sola que realiza todas las tareas.
+
+Dado un conjunto P contenedor de todas las ciudades, una matriz L de distancias entre ciudades y una matriz T para aplicar la técnica de memoization.
+
+#BEGIN
+	
+	subconjuntos[] = {Almacenamos todos los subconjuntos posibles de P de forma ordenada}
+
+	//Rellenamos la matriz T
+	#Repetir desde col=0 hasta col=subconjuntos.size()-1
+		#Repetir desde fil=0 hasta P.size()-1
+			#Si fil==0 && col!=0 && col!=subconjuntos.size()-1 entonces
+				T[fil][col].coste = ∞
+			#En_otro_caso
+				S = subconjuntos[col]
+
+				#Si S == Ø entonces 
+					T[fil][col].coste = L[fil][0]
+					T[fil][col].vertice = fil
+
+				#En_otro_caso_si fil ϵ S
+					T[fil][col].coste = ∞
+
+				#En_otro_caso
+					T[fil][col].coste = {minimo L[fil][S[i]-1]+T[S[i]-1][{columna donde se encuentra el subconjunto S-{j}}].coste para todo jϵS}
+					T[fil][col].vertice = {vertice donde se da el mínimo coste}
+				#End_si
+			#End_si
+		#End_repetir
+	#End_repetir
+
+	//Calculamos el camino mínimo a partir de T
+	//Añadimos la primera ciudad y la segunda ciudad
+	fila = T[0][subconjuntos.size()-1].vertice
+	camino[].push(1)
+	camino[].push(fila)
+
+	subc[] = subconjunto[]
+	subc[].pop()
+
+	#Mientras subc[] no esté vacío
+
+		{Eliminamos el elemento de subc[] que coincide con la variable fila}
+
+		#Si subc[] no está vacío entonces
+			#Repetir desde i=0 hasta i=subconjuntos.size()-1
+				#Si subc[] == suconjuntos[i] entonces 
+					columna = i
+				#End_si
+			#End_repetir
+			fila = T[fila-1][columna].vertice
+			camino.push(fila)
+		#End_si
+	#End_mientras
+
+#END
+
+return camino[], T[0][subconjuntos.size()-1].coste
+
+
